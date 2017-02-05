@@ -22,6 +22,7 @@ public class RPNCalc {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Stack<Double> stack = new Stack();
+        System.out.println(Math.pow(10, 3));
         while(true){
             String line = reader.readLine();
             String[] symbols = line.split(" ");
@@ -31,14 +32,22 @@ public class RPNCalc {
                         stack.push(stack.pop() + stack.pop());
                         break;
                     case "-":
-                        stack.push(stack.pop() - stack.pop());
+                        stack.push(-stack.pop() + stack.pop());
                         break;
                     case "*":
                         stack.push(stack.pop() * stack.pop());
                         break;
                     case "/":
-                        stack.push(stack.pop() / stack.pop());
+                        double divisor = stack.pop();
+                        stack.push(stack.pop() / divisor);
                         break;
+                    case "^":
+                        double second = stack.pop();
+                        double first = stack.pop();
+                        stack.push(Math.pow(first, second));
+                        break;
+                    case "exit":
+                        System.exit(1);
                     default:
                         stack.push(Double.parseDouble(symbol));
                         break;
