@@ -21,8 +21,8 @@ public class RPNCalc {
      */
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Stack<Double> stack = new Stack();
-        System.out.println(Math.pow(10, 3));
+        //Stack<Double> stack = new Stack();
+        ArrayStack<Double> stack = new ArrayStack<Double>();
         while(true){
             String line = reader.readLine();
             String[] symbols = line.split(" ");
@@ -52,8 +52,14 @@ public class RPNCalc {
                         stack.push(Double.parseDouble(symbol));
                         break;
                 }
-                System.out.println(stack);
+                
             }
+            System.out.println("The stack now contains:");
+            System.out.print("[ ");
+            for(Object object : stack){
+                    System.out.print(object.toString() + " ");
+            }
+            System.out.print("] \n\r");
         }
     }
 }
